@@ -40,3 +40,7 @@ s0uthwest, libimobiledevice, and @tihmstar for idevicerestore (which I modified 
 xerub and iPhone Dev Team for xpwn and firmware bundle
 
 @sequinn and @parrotgeek1 for root_tar
+
+https://github.com/mkropat/sh-realpath for realpath code used in scripts
+
+libusb and pyusb
