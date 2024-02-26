@@ -68,6 +68,16 @@ _canonicalize_file_path() {
     (cd "$dir" 2>/dev/null && printf '%s/%s\n' "$(pwd -P)" "$file")
 }
 
+if [ "x`uname`" != "xDarwin" ] ; then
+	echo "Only macOS is supported."
+	exit 1
+fi
+
+if [ "x`uname -m`" = "xi386" ] ; then
+	echo "Only 64-bit Macs are supported."
+	exit 1
+fi
+
 usage() {
 	echo "Usage: $1 <input.ipsw> [jailbreak]"
 }

@@ -70,7 +70,7 @@ _canonicalize_file_path() {
 }
 
 if [ "x`uname`" != "xDarwin" ] ; then
-	echo "Only Mac OS X is supported."
+	echo "Only macOS is supported."
 	exit 1
 fi
 
