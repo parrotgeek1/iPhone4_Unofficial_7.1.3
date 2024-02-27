@@ -97,16 +97,18 @@ if [ "x$1" = "x" ]; then
 	exit 1
 fi
 
+ipsw_realpath="`realpath "$1"`"
+
 cd "$(dirname "$0")"
 
 trap _exit SIGINT SIGTERM
 
-if [ ! -f "`realpath "$1"`" ] ; then
+if [ ! -f "$ipsw_realpath" ] ; then
 	echo "Can't read IPSW file: $1"
 	exit 1
 fi
 
-unzip -p "`realpath "$1"`" Restore.plist > Restore.plist 2>/dev/null
+unzip -p "$ipsw_realpath" Restore.plist > Restore.plist 2>/dev/null
 if [ ! -s Restore.plist ] ; then
 	echo "Not an IPSW file: $1"
 	rm -f Restore.plist
@@ -123,7 +125,7 @@ fi
 set -e
 
 rm -f Restore.plist
-rm -rf "`realpath "$1" | sed 's/\.ipsw$//'`"
+rm -rf "`echo "$ipsw_realpath" | sed 's/\.ipsw$//'`"
 killall iTunes iTunesHelper >/dev/null 2>&1 || true
 killall -STOP AMPDeviceDiscoveryAgent >/dev/null 2>&1 || true
 cd tools/ipwndfu
@@ -137,10 +139,10 @@ echo
 echo 'IMPORTANT: an "FDR" error is normal, ignore it'
 echo
 set +e
-./tools/idevicerestoreLHTSS -y -e "`realpath "$1"`"
+./tools/idevicerestoreLHTSS -y -e "$ipsw_realpath"
 ex=$?
 kill -9 $php_pid >/dev/null 2>&1
-rm -rf "`realpath "$1" | sed 's/\.ipsw$//'`"
+rm -rf "`echo "$ipsw_realpath" | sed 's/\.ipsw$//'`"
 killall -CONT AMPDeviceDiscoveryAgent >/dev/null 2>&1 || true
 if [ $ex != 0 ]; then
 exit $ex

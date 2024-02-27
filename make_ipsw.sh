@@ -97,7 +97,9 @@ if [ ! -f "$1" ] ; then
 	exit 1
 fi
 
+ipsw_realpath="`realpath "$1"`"
+
 cd "$(dirname "$0")"
 for i in scripts/*.sh; do
-	bash -e $i "`realpath "$1"`" "$2" || exit $?
+	bash -e $i "$ipsw_realpath" "$2" || exit $?
 done
