@@ -4,4 +4,6 @@
 version.xml
 *.o
 Firmware/*
-bb.tar
+*.pyc
+*.pyo
+*.tar
