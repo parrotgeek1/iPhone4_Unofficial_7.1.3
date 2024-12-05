@@ -44,3 +44,7 @@ xerub and iPhone Dev Team for xpwn and firmware bundle
 https://github.com/mkropat/sh-realpath for realpath code used in scripts
 
 libusb and pyusb
+
+Licensing note
+==============
+Any publicly released modified versions of this project must not purport to be endorsed by ParrotGeek Software.
