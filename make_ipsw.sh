@@ -79,15 +79,10 @@ if [ "x`uname -m`" = "xi386" ] ; then
 fi
 
 usage() {
-	echo "Usage: $1 <input.ipsw> [jailbreak]"
+	echo "Usage: $1 <input.ipsw>"
 }
 
 if [ "x$1" = "x" ]; then
-	usage "$0"
-	exit 1
-fi
-
-if [ "x$2" != "x" ] && [ "$2" != "jailbreak" ] ;then
 	usage "$0"
 	exit 1
 fi
@@ -101,5 +96,5 @@ ipsw_realpath="`realpath "$1"`"
 
 cd "$(dirname "$0")"
 for i in scripts/*.sh; do
-	bash -e $i "$ipsw_realpath" "$2" || exit $?
+	bash -e $i "$ipsw_realpath" || exit $?
 done
